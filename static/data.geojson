@@ -1,0 +1,20 @@
+{
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -76.9959369166,
+                    38.9210596891
+                ]
+            },
+            "type": "Feature",
+            "properties": {
+                "description": "Rhode Island Avenue",
+                "marker-symbol": "rail-metro",
+                "title": "Rhode Island Avenue",
+                "url": "http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id=26",
+                "lines": [
+                    "Red"
+                ],
+                "address": "919 Rhode Island Avenue NE, Washington, DC 20018"
+            }
+        }
