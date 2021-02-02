@@ -1,0 +1,1060 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Additional Classes &#8212; SnapPy 2.8 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Census manifolds" href="censuses.html" />
+    <link rel="prev" title="Triangulation" href="triangulation.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="censuses.html" title="Census manifolds"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="triangulation.html" title="Triangulation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">SnapPy 2.8 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="snappy.html" accesskey="U">The snappy module and its classes</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-snappy">
+<span id="additional-classes"></span><h1>Additional Classes<a class="headerlink" href="#module-snappy" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="abeliangroup">
+<h2>AbelianGroup<a class="headerlink" href="#abeliangroup" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="snappy.AbelianGroup">
+<em class="property">class </em><code class="sig-prename descclassname">snappy.</code><code class="sig-name descname">AbelianGroup</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">presentation</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">elementary_divisors</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.AbelianGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>An AbelianGroup object represents a finitely generated abelian group,
+usually the first homology group of a snappy Manifold.</p>
+<p>Instantiate as AbelianGroup(P) where P is a presentation matrix
+given as a list of lists of integers.  Alternatively, use
+AbelianGroup(elementary_divisors=[n_1, n_2, … ]) where the n_i
+are the elementary divisors of the group.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">AbelianGroup</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
+<span class="go">Z/2 + Z</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">AbelianGroup</span><span class="p">(</span><span class="n">elementary_divisors</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span>
+<span class="go">Z/5 + Z/15 + Z + Z</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="n">betti_number</span><span class="p">()</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="n">order</span><span class="p">()</span>
+<span class="go">&#39;infinite&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="snappy.AbelianGroup.betti_number">
+<code class="sig-name descname">betti_number</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.AbelianGroup.betti_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rank of the maximal free abelian subgroup.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="snappy.AbelianGroup.coefficients">
+<code class="sig-name descname">coefficients</code><a class="headerlink" href="#snappy.AbelianGroup.coefficients" title="Permalink to this definition">¶</a></dt>
+<dd><p>coefficients: object</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.AbelianGroup.elementary_divisors">
+<code class="sig-name descname">elementary_divisors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.AbelianGroup.elementary_divisors" title="Permalink to this definition">¶</a></dt>
+<dd><p>The elementary_divisors of this finitely generated abelian group.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.AbelianGroup.order">
+<code class="sig-name descname">order</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.AbelianGroup.order" title="Permalink to this definition">¶</a></dt>
+<dd><p>The order of the group.  Returns the string ‘infinite’ if the
+group is infinite.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.AbelianGroup.rank">
+<code class="sig-name descname">rank</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.AbelianGroup.rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>The rank of the group.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="fundamentalgroup">
+<h2>FundamentalGroup<a class="headerlink" href="#fundamentalgroup" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="snappy.HolonomyGroup">
+<em class="property">class </em><code class="sig-prename descclassname">snappy.</code><code class="sig-name descname">HolonomyGroup</code><a class="headerlink" href="#snappy.HolonomyGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>A HolonomyGroup is a FundamentalGroup with added structure
+consisting of a holonomy representation into O(3,1), and an
+arbitrarily chosen lift of the holonomy representation to SL(2,C).
+The holonomy is determined by the shapes of the tetrahedra, so a
+HolonomyGroup is associated to a Manifold, while a Triangulation
+only has a FundamentalGroup.  Methods are provided to evaluate the
+representations on a group element.</p>
+<p>A FundamentalGroup represents a presentation of the fundamental
+group of a SnapPea Triangulation.  Group elements are described as
+words in the generators a,b,…, where the inverse of a is denoted
+A.  Words are represented by python strings (and the concatenation
+operator is named ‘+’, according to Python conventions).</p>
+<p>Instantiate via M.fundamental_group(), where M is a Manifold.</p>
+<dl class="py method">
+<dt id="snappy.HolonomyGroup.O31">
+<code class="sig-name descname">O31</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">word</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.HolonomyGroup.O31" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the image of the element represented by the input word
+under the holonomy representation, where Isom(H^3) is
+identified with SO(3,1).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.HolonomyGroup.SL2C">
+<code class="sig-name descname">SL2C</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">word</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.HolonomyGroup.SL2C" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the image of the element represented by the input word
+under some SL(2,C) representation that lifts the holonomy
+representation.  Note: the choice of lift is not guaranteed to
+vary continuously when filling coefficients are changed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.HolonomyGroup.character_variety_vars_and_polys">
+<code class="sig-name descname">character_variety_vars_and_polys</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_ideal</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.HolonomyGroup.character_variety_vars_and_polys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of variables and a list polynomials where the
+polynomials generate the ideal defining the SL(2, C) character
+variety of this group.  Each variables is of the form “Tw” where
+“w” is a word in the generators and represents the trace
+function of that word.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">H</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;dLQacccbjkg&#39;</span><span class="p">)</span>  <span class="c1"># Hopf link exterior.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">H</span><span class="o">.</span><span class="n">fundamental_group</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">vars</span><span class="p">,</span> <span class="n">polys</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">character_variety_vars_and_polys</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">vars</span>
+<span class="go">[Ta, Tb, Tab]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">polys</span>    
+<span class="go">[Ta^3 - Tab*Tb*Ta^2 + (Tb^2 + (Tab^2 - 4))*Ta, </span>
+<span class="go"> Ta^2 - Tab*Tb*Ta + (Tb^2 + (Tab^2 - 4))]</span>
+</pre></div>
+</div>
+<p>When used inside Sage, you can ask for the answer as a proper
+ideal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">M</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;m003&#39;</span><span class="p">)</span>
+<span class="n">sage</span><span class="p">:</span> <span class="n">G</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">fundamental_group</span><span class="p">()</span>
+<span class="n">sage</span><span class="p">:</span> <span class="n">I</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">character_variety_vars_and_polys</span><span class="p">(</span><span class="n">as_ideal</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">sage</span><span class="p">:</span> <span class="n">I</span><span class="o">.</span><span class="n">dimension</span><span class="p">()</span>
+<span class="mi">1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.HolonomyGroup.complex_length">
+<code class="sig-name descname">complex_length</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">word</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.HolonomyGroup.complex_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the complex length of the isometry represented by the
+input word.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.HolonomyGroup.gap_string">
+<code class="sig-name descname">gap_string</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.HolonomyGroup.gap_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a string which will define this group within GAP.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.HolonomyGroup.generators">
+<code class="sig-name descname">generators</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.HolonomyGroup.generators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the letters representing the generators in the presentation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.HolonomyGroup.generators_in_originals">
+<code class="sig-name descname">generators_in_originals</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">verbose_form</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">raw_form</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.HolonomyGroup.generators_in_originals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the current generators in terms of the original
+geometric generators (before simplification).</p>
+<p>If the flag “raw_form” is set to True, it returns a sequence of
+instructions for expressing the current generators in terms of
+the orignal ones.  This is sometimes much more concise, though
+the format is somewhat obscure.  See the source code of this
+function in SnapPy.pyx for details.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.HolonomyGroup.longitude">
+<code class="sig-name descname">longitude</code><span class="sig-paren">(</span><em class="sig-param">int which_cusp=0</em>, <em class="sig-param">as_int_list=False</em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.HolonomyGroup.longitude" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a word representing a conjugate of the current
+longitude for the given cusp.  Guaranteed to commute with the
+meridian for the same cusp.  Note: for Klein bottle cusps,
+the longitude must be defined carefully.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;m004&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fundamental_group</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">longitude</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">&#39;aBAbABab&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">longitude</span><span class="p">()</span>   <span class="c1"># shortcut for the above.  </span>
+<span class="go">&#39;aBAbABab&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.HolonomyGroup.magma_string">
+<code class="sig-name descname">magma_string</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.HolonomyGroup.magma_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a string which will define this group within MAGMA.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.HolonomyGroup.meridian">
+<code class="sig-name descname">meridian</code><span class="sig-paren">(</span><em class="sig-param">int which_cusp=0</em>, <em class="sig-param">as_int_list=False</em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.HolonomyGroup.meridian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a word representing a conjugate of the current
+meridian for the given cusp.  Guaranteed to commute with the
+longitude for the same cusp.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;m125&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fundamental_group</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">meridian</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">&#39;aaba&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">meridian</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># The last cusp</span>
+<span class="go">&#39;baaba&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.HolonomyGroup.num_generators">
+<code class="sig-name descname">num_generators</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.HolonomyGroup.num_generators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of generators for the presentation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.HolonomyGroup.num_original_generators">
+<code class="sig-name descname">num_original_generators</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.HolonomyGroup.num_original_generators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of geometric generators (before simplification).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.HolonomyGroup.num_relators">
+<code class="sig-name descname">num_relators</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.HolonomyGroup.num_relators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of generators for the presentation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.HolonomyGroup.original_generators">
+<code class="sig-name descname">original_generators</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">verbose_form</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.HolonomyGroup.original_generators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the original geometric generators (before
+simplification) in terms of the current generators.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.HolonomyGroup.peripheral_curves">
+<code class="sig-name descname">peripheral_curves</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_int_list</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.HolonomyGroup.peripheral_curves" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of meridian-longitude pairs for all cusps.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;m125&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fundamental_group</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">peripheral_curves</span><span class="p">()</span>
+<span class="go">[(&#39;aaba&#39;, &#39;abb&#39;), (&#39;baaba&#39;, &#39;Ba&#39;)]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.HolonomyGroup.relators">
+<code class="sig-name descname">relators</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">verbose_form</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">as_int_list</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.HolonomyGroup.relators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of words representing the relators in the presentation.</p>
+<p>If the optional argument verbose_form is True, then the
+relator is returned in the form “a*b*a^-1*b^-1” instead of “abAB”.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.HolonomyGroup.sage">
+<code class="sig-name descname">sage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.HolonomyGroup.sage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the corresponding Sage FinitelyPresentedGroup</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.HolonomyGroup.use_field_conversion">
+<em class="property">classmethod </em><code class="sig-name descname">use_field_conversion</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cls</span></em>, <em class="sig-param"><span class="n">func</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.HolonomyGroup.use_field_conversion" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="symmetrygroup">
+<h2>SymmetryGroup<a class="headerlink" href="#symmetrygroup" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="snappy.SymmetryGroup">
+<em class="property">class </em><code class="sig-prename descclassname">snappy.</code><code class="sig-name descname">SymmetryGroup</code><a class="headerlink" href="#snappy.SymmetryGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>A SymmetryGroup is a group of self-isometries of hyperbolic
+3-manifold.  Instantiate as follows:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;m004&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">symmetry_group</span><span class="p">()</span>
+<span class="go">D4</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="snappy.SymmetryGroup.abelian_description">
+<code class="sig-name descname">abelian_description</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.SymmetryGroup.abelian_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the symmetry group is abelian, return it as an AbelianGroup</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;v3379&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">symmetry_group</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">abelian_description</span><span class="p">()</span>
+<span class="go">Z/2 + Z/2 + Z/2</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.SymmetryGroup.abelianization">
+<code class="sig-name descname">abelianization</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.SymmetryGroup.abelianization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the abelianization of the symmetry group</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;m004&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">symmetry_group</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">abelianization</span><span class="p">()</span>
+<span class="go">Z/2 + Z/2</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.SymmetryGroup.center">
+<code class="sig-name descname">center</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.SymmetryGroup.center" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the center of the symmetry group</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;m004&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">symmetry_group</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">center</span><span class="p">()</span>
+<span class="go">Z/2</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.SymmetryGroup.commutator_subgroup">
+<code class="sig-name descname">commutator_subgroup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.SymmetryGroup.commutator_subgroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the commutator subgroup of the SymmetryGroup</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;m004&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">symmetry_group</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span>
+<span class="go">D4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">commutator_subgroup</span><span class="p">()</span>
+<span class="go">Z/2</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.SymmetryGroup.direct_product_description">
+<code class="sig-name descname">direct_product_description</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.SymmetryGroup.direct_product_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the SymmetryGroup is a nontrivial direct product with at
+least one nonabelian factor, return a pair of SymmetryGroups
+consisting of the (two) factors.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;s960&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">symmetry_group</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">direct_product_description</span><span class="p">()</span>
+<span class="go">(Z/4, D3)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.SymmetryGroup.is_S5">
+<code class="sig-name descname">is_S5</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.SymmetryGroup.is_S5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether the group is the symmetric group on five things.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.SymmetryGroup.is_abelian">
+<code class="sig-name descname">is_abelian</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.SymmetryGroup.is_abelian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether the symmetry group is abelian.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;m004&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">symmetry_group</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">is_abelian</span><span class="p">()</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.SymmetryGroup.is_amphicheiral">
+<code class="sig-name descname">is_amphicheiral</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.SymmetryGroup.is_amphicheiral" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether the manifold has an orientation reversing symmetry.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;m004&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">symmetry_group</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">is_amphicheiral</span><span class="p">()</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.SymmetryGroup.is_dihedral">
+<code class="sig-name descname">is_dihedral</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.SymmetryGroup.is_dihedral" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether the symmetry group is dihedral.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;m004&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">symmetry_group</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">is_dihedral</span><span class="p">()</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.SymmetryGroup.is_direct_product">
+<code class="sig-name descname">is_direct_product</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.SymmetryGroup.is_direct_product" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether the SymmetryGroup is a nontrivial direct
+product with at least one nonabelian factor.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;s960&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">symmetry_group</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">is_direct_product</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span>
+<span class="go">Z/4 x D3</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.SymmetryGroup.is_full_group">
+<code class="sig-name descname">is_full_group</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.SymmetryGroup.is_full_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether the full symmetry group has been found.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;m004&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">symmetry_group</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">is_full_group</span><span class="p">()</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.SymmetryGroup.is_invertible_knot">
+<code class="sig-name descname">is_invertible_knot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.SymmetryGroup.is_invertible_knot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether a one-cusped has a symmetry that acts on the
+cusp via the matrix -I.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;m015&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">symmetry_group</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">is_invertible_knot</span><span class="p">()</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.SymmetryGroup.is_polyhedral">
+<code class="sig-name descname">is_polyhedral</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.SymmetryGroup.is_polyhedral" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether the symmetry group is a (possibly binary)
+polyhedral group.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.SymmetryGroup.isometries">
+<code class="sig-name descname">isometries</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.SymmetryGroup.isometries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a detailed list of all the isometries in the symmetry group.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;s959&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">symmetry_group</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">isoms</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">isometries</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">isoms</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+<span class="go">0 -&gt; 1   1 -&gt; 0 </span>
+<span class="go">[-1 -1]  [ 0  1]</span>
+<span class="go">[ 1  0]  [-1 -1]</span>
+<span class="go">Does not extend to link</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.SymmetryGroup.multiply_elements">
+<code class="sig-name descname">multiply_elements</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">i</span></em>, <em class="sig-param"><span class="n">j</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.SymmetryGroup.multiply_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the product of group elements i and j.  The convention
+is that products of symmetries read right to left.  That is,
+the composition (symmetry[i] o symmetry[j]) acts by first
+doing symmetry[j], then symmetry[i].</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;m004&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">symmetry_group</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">multiply_elements</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.SymmetryGroup.order">
+<code class="sig-name descname">order</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.SymmetryGroup.order" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the order of the symmetry group</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;s000&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">symmetry_group</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">order</span><span class="p">()</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.SymmetryGroup.polyhedral_description">
+<code class="sig-name descname">polyhedral_description</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.SymmetryGroup.polyhedral_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the symmetry group is a (possibly binary)
+polyhedral group, return a description of it.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="dirichletdomain">
+<h2>DirichletDomain<a class="headerlink" href="#dirichletdomain" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="snappy.DirichletDomain">
+<em class="property">class </em><code class="sig-prename descclassname">snappy.</code><code class="sig-name descname">DirichletDomain</code><a class="headerlink" href="#snappy.DirichletDomain" title="Permalink to this definition">¶</a></dt>
+<dd><p>A DirichletDomain object represents a Dirichlet Domain of 
+a hyperbolic manifold, typically centered at a point which
+is a local maximum of injectivity radius.  It will have ideal
+vertices if the manifold is not closed.</p>
+<p>Instantiate as M.dirichlet_domain() where M is a Manifold to
+obtain a Dirichlet Domain centered at a point which maximizes
+injectivity radius.</p>
+<p>Other options can be provided to customize the computation, with
+the default values shown here</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;m003(3,-4)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">dirichlet_domain</span><span class="p">(</span><span class="n">vertex_epsilon</span><span class="o">=</span><span class="mf">10.0</span><span class="o">**-</span><span class="mi">8</span><span class="p">,</span> <span class="n">displacement</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="n">centroid_at_origin</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">maximize_injectivity_radius</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">40 finite vertices, 0 ideal vertices; 60 edges; 22 faces</span>
+</pre></div>
+</div>
+<p>You can also create a Dirichlet Domain from a file listing matrix
+generators for the group, in SnapPea’s “% Generator” format, via</p>
+<blockquote>
+<div><p>D = DirichletDomain(generator_file=’test.gens’)</p>
+</div></blockquote>
+<dl class="py method">
+<dt id="snappy.DirichletDomain.edge_list">
+<code class="sig-name descname">edge_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.DirichletDomain.edge_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of edges, each represented as a dictionar with keys
+‘tail_vertex_index’, ‘tip_vertex_index’, ‘edge_class’.</p>
+<p>The index (into vertex_data_list()) to the two vertices at the
+end of the edge are stored in ‘tail_vertex_index’ and
+‘tip_vertex_index’. The index of the edge class this edge
+belongs to is stored in ‘edge_class’.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.DirichletDomain.export_stl">
+<code class="sig-name descname">export_stl</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">'klein'</span></em>, <em class="sig-param"><span class="n">cutout</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">num_subdivisions</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="n">shrink_factor</span><span class="o">=</span><span class="default_value">0.9</span></em>, <em class="sig-param"><span class="n">cutoff_radius</span><span class="o">=</span><span class="default_value">0.9</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.DirichletDomain.export_stl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Export the Dirichlet domain as an stl file suitable for 3d printing.</p>
+<p>Arguments can be given to modify the model produced:</p>
+<ul class="simple">
+<li><p>model=’klein’ - (alt. ‘poincare’) the model of HH^3 to use.</p></li>
+<li><p>cutout=False - remove the interior of each face</p></li>
+<li><p>shrink_factor=0.9 - the fraction to cut out of each face</p></li>
+<li><p>cuttoff_radius=0.9 - maximum rescaling for projection into Poincare model</p></li>
+<li><p>num_subdivision=3 - number of times to subdivide for the Poincare model</p></li>
+</ul>
+<p>For printing domains in the Poincare model, cutoff_radius is critical for avoiding
+infinitely thin cusps, which cannot be printed.</p>
+<p>This can take a long time for finely subdivided domains. So we call UI_callback
+every so often if it is not None.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">D</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;m004&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dirichlet_domain</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">.</span><span class="n">export_stl</span><span class="p">(</span><span class="s1">&#39;fig-eight-klein.stl&#39;</span><span class="p">)</span>     
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">.</span><span class="n">export_stl</span><span class="p">(</span><span class="s1">&#39;fig-eight-poincare.stl&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;poincare&#39;</span><span class="p">)</span>     
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">.</span><span class="n">export_stl</span><span class="p">(</span><span class="s1">&#39;fig-eight-klein-wireframe.stl&#39;</span><span class="p">,</span> <span class="n">cutout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>     
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">.</span><span class="n">export_stl</span><span class="p">(</span><span class="s1">&#39;fig-eight-poincare-wireframe.stl&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;poincare&#39;</span><span class="p">,</span> <span class="n">cutout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>     
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.DirichletDomain.face_list">
+<code class="sig-name descname">face_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.DirichletDomain.face_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of faces, each represented as a dictionary with
+keys ‘vertices’, ‘distance’, ‘closest’, ‘hue’, ‘vertex_indices’,
+‘edge_indices’, ‘vertex_image_indices’, ‘edge_image_indices’,
+‘edge_orientations’.</p>
+<p>The distance from the origin is the value for ‘distance’, and
+the value for ‘closest’ is the orthogonal projection of the
+origin to the plane containing the face.  The vertices of each
+face are listed in clockwise order, as viewed from outside the
+polyhedron.</p>
+<p>The coordinates of vertices are stored in ‘vertices’ and the
+corresponding index into vertex_data_list() is stored in
+‘vertex_index’. The indices (in edge_list()) to the edges of
+the face (also in clockwise order) are stored in
+‘edge_indices’ such that the first edge is adjacent to the
+first and second vertex.  The respective value in
+‘edge_orientations’ is +/-1 to indicate whether the
+orientation of the edge induced from the orientation of the face
+is the same or opposite than the edges orientation.</p>
+<p>To find the image of a vertex or edge adjacent to a face under
+the pairing matrix for this face, lookup the index in
+‘vertex_image_indices’, respectively, ‘edge_image_indices’ at
+the respective position.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.DirichletDomain.in_radius">
+<code class="sig-name descname">in_radius</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.DirichletDomain.in_radius" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the radius of the largest inscribed sphere.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.DirichletDomain.length_spectrum_dicts">
+<code class="sig-name descname">length_spectrum_dicts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cutoff_length</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">full_rigor</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">multiplicities</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">user_radius</span><span class="o">=</span><span class="default_value">0.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.DirichletDomain.length_spectrum_dicts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of info objects describing the short
+geodesics up to the specified cutoff length.  The keys are
+‘length’, ‘parity’, ‘topology’, and ‘multiplicity’.  The
+length is the complex length; the parity specifies whether
+orientation is preserved; and topology distinguishes between
+circles and mirrored intervals.  Finally, the key ‘matrix’
+in the fundamental group realizing this element.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;m004(1,2)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">dirichlet_domain</span><span class="p">(</span><span class="n">maximize_injectivity_radius</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lengths</span> <span class="o">=</span> <span class="n">D</span><span class="o">.</span><span class="n">length_spectrum_dicts</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">lengths</span><span class="p">)</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lengths</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">matrix</span> <span class="ow">in</span> <span class="n">D</span><span class="o">.</span><span class="n">pairing_matrices</span><span class="p">()</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.DirichletDomain.manifold">
+<code class="sig-name descname">manifold</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.DirichletDomain.manifold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a Manifold computed directly from the Dirichlet
+domain, regarded as polyhedron with faces identified in pairs.
+Only works if this gives a manifold not an orbifold.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;7_3&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">dirichlet_domain</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">D</span><span class="o">.</span><span class="n">manifold</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">is_isometric_to</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.DirichletDomain.num_edges">
+<code class="sig-name descname">num_edges</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.DirichletDomain.num_edges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of edges.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.DirichletDomain.num_faces">
+<code class="sig-name descname">num_faces</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.DirichletDomain.num_faces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of faces.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.DirichletDomain.num_finite_vertices">
+<code class="sig-name descname">num_finite_vertices</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.DirichletDomain.num_finite_vertices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of finite (non-ideal) vertices.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.DirichletDomain.num_ideal_vertices">
+<code class="sig-name descname">num_ideal_vertices</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.DirichletDomain.num_ideal_vertices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of ideal vertices.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.DirichletDomain.num_vertices">
+<code class="sig-name descname">num_vertices</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.DirichletDomain.num_vertices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of vertices.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.DirichletDomain.out_radius">
+<code class="sig-name descname">out_radius</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.DirichletDomain.out_radius" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the radius of the smallest circubscribed sphere.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.DirichletDomain.pairing_matrices">
+<code class="sig-name descname">pairing_matrices</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.DirichletDomain.pairing_matrices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of the O31Matrices which pair the faces of
+this DirichletDomain.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;s345&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">dirichlet_domain</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">matrices</span> <span class="o">=</span> <span class="n">D</span><span class="o">.</span><span class="n">pairing_matrices</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="n">DirichletDomain</span><span class="p">(</span><span class="n">O31_generators</span><span class="o">=</span><span class="n">matrices</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="n">D1</span><span class="o">.</span><span class="n">manifold</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">is_isometric_to</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.DirichletDomain.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.DirichletDomain.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the Dirichlet domain as a text file in “% Generators” format.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">snappy.number</span> <span class="kn">import</span> <span class="n">Number</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">acc</span><span class="p">,</span> <span class="n">Number</span><span class="o">.</span><span class="n">_accuracy_for_testing</span> <span class="o">=</span> <span class="n">Number</span><span class="o">.</span><span class="n">_accuracy_for_testing</span><span class="p">,</span> <span class="kc">None</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;m125&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">dirichlet_domain</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">NamedTemporaryFile</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">delete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">E</span> <span class="o">=</span> <span class="n">DirichletDomain</span><span class="p">(</span><span class="n">generator_file</span><span class="o">=</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">);</span> <span class="n">E</span>
+<span class="go">30 finite vertices, 2 ideal vertices; 50 edges; 20 faces</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pickle</span> <span class="kn">import</span> <span class="n">dumps</span><span class="p">,</span> <span class="n">loads</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">E</span> <span class="o">=</span> <span class="n">loads</span><span class="p">(</span><span class="n">dumps</span><span class="p">(</span><span class="n">D</span><span class="p">));</span> <span class="n">E</span>
+<span class="go">30 finite vertices, 2 ideal vertices; 50 edges; 20 faces</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Number</span><span class="o">.</span><span class="n">_accuracy_for_testing</span> <span class="o">=</span> <span class="n">acc</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.DirichletDomain.spine_radius">
+<code class="sig-name descname">spine_radius</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.DirichletDomain.spine_radius" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the infimum of the radii (measured from the origin) of all 
+spines dual to the Dirichlet domain.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.DirichletDomain.triangulation">
+<code class="sig-name descname">triangulation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.DirichletDomain.triangulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a Triangulation computed directly from the Dirichlet
+domain, regarded as polyhedron with faces identified in pairs.
+Only works if this gives a manifold not an orbifold.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;7_3&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">dirichlet_domain</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">D</span><span class="o">.</span><span class="n">triangulation</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">is_isometric_to</span><span class="p">(</span><span class="n">B</span><span class="o">.</span><span class="n">with_hyperbolic_structure</span><span class="p">())</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.DirichletDomain.use_field_conversion">
+<code class="sig-name descname">use_field_conversion</code><span class="sig-paren">(</span><em class="sig-param">type cls</em>, <em class="sig-param">func</em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.DirichletDomain.use_field_conversion" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="snappy.DirichletDomain.vertex_list">
+<code class="sig-name descname">vertex_list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">details</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.DirichletDomain.vertex_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of the coordinates of the vertices.  These are
+the three space coordinates of a point in the time=1 slice of
+Minkowski space.  That is to say, these are the coordinates of
+the image of the point under projection into the Klein model.</p>
+<p>If <cite>details = True</cite> is passed, returns a list of vertices,
+each represented by a dictionary with keys ‘position’,
+‘ideal’, ‘vertex_class’. The coordinates are the value for
+‘position’. The index of the vertex class this vertex belongs
+to is the value for ‘vertex_class’. The value for ‘ideal’
+is True if the vertex is an ideal point.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.DirichletDomain.view">
+<code class="sig-name descname">view</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.DirichletDomain.view" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="snappy.DirichletDomain.volume">
+<code class="sig-name descname">volume</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.DirichletDomain.volume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the approximate volume of the DirichletDomain.
+Because matrices in O(3,1) tend to accumulate roundoff error,
+it’s hard to get a good bound on the accuracy of the computed
+volume.  Nevertheless, the kernel computes the best value it
+can, with the hope that it will aid the user in recognizing
+manifolds defined by a set of generators.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="cuspneighborhood">
+<h2>CuspNeighborhood<a class="headerlink" href="#cuspneighborhood" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="snappy.CuspNeighborhood">
+<em class="property">class </em><code class="sig-prename descclassname">snappy.</code><code class="sig-name descname">CuspNeighborhood</code><a class="headerlink" href="#snappy.CuspNeighborhood" title="Permalink to this definition">¶</a></dt>
+<dd><p>A CuspNeighborhood object represents an equivariant collection of
+disjoint horoballs that project to cusp neighborhoods.</p>
+<p>Instantiate as M.cusp_neighborhood()</p>
+<dl class="py method">
+<dt id="snappy.CuspNeighborhood.Ford_domain">
+<code class="sig-name descname">Ford_domain</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">which_cusp</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">high_precision</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.CuspNeighborhood.Ford_domain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of pairs of complex numbers describing the
+endpoints of the segments obtained by projecting the edges of
+the Ford domain to the xy-plane in the upper half space model.</p>
+<p>If the high_precision flag is set to False (the default), the
+coordinates are Python complex numbers.  Otherwise they are
+SnapPy Numbers.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.CuspNeighborhood.all_translations">
+<code class="sig-name descname">all_translations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">verified</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">bits_prec</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.CuspNeighborhood.all_translations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the (complex) Euclidean translations of the meridian
+and longitude for each cusp measured with respect to the cusp neighborhood.</p>
+<p>The result is a list of pairs, the second entry corresponding to a
+longitude is always real:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s2">&quot;v3227&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">cusp_neighborhood</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">N</span><span class="o">.</span><span class="n">all_translations</span><span class="p">()</span> 
+<span class="go">[(-0.152977162509284 + 0.747697694854404*I, 0.868692062725708), (-0.152977162509284 + 0.747697694854404*I, 0.868692062725708), (0.0961611977895952 + 0.725536253181650*I, 0.895226186134782)]</span>
+</pre></div>
+</div>
+<p>Often, one is interested in making the cusp neighborhoods as large as possible first:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">N</span><span class="o">.</span><span class="n">set_displacement</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">N</span><span class="o">.</span><span class="n">set_displacement</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">N</span><span class="o">.</span><span class="n">set_displacement</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">N</span><span class="o">.</span><span class="n">all_translations</span><span class="p">()</span> 
+<span class="go">[(-0.477656250512815 + 2.33461303362557*I, 2.71240613125259), (-0.259696455247511 + 1.26930345526993*I, 1.47470541152065), (0.131389112265699 + 0.991330873713731*I, 1.22318540718077)]</span>
+</pre></div>
+</div>
+<p>This can also be achieved by <a class="reference internal" href="manifold.html#snappy.Manifold.cusp_translations" title="snappy.Manifold.cusp_translations"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Manifold.cusp_translations()</span></code></a> which
+would have made a different choice of disjoint cusp neighborhoods though:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">cusp_translations</span><span class="p">()</span> 
+<span class="go">[(-0.293015413844244 + 1.43215461637847*I, 1.66390956720311), (-0.321248127611439 + 1.57014603063244*I, 1.82423110772901), (0.195359366573337 + 1.47398645301500*I, 1.81872548058130)]</span>
+</pre></div>
+</div>
+<p>This method supports arbitrary precision</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">snappy.number</span> <span class="kn">import</span> <span class="n">Number</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">N</span><span class="o">.</span><span class="n">set_displacement</span><span class="p">(</span><span class="mf">1.125</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">N</span><span class="o">.</span><span class="n">set_displacement</span><span class="p">(</span><span class="mf">0.515625</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">N</span><span class="o">.</span><span class="n">set_displacement</span><span class="p">(</span><span class="mf">0.3125</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">N</span><span class="o">.</span><span class="n">all_translations</span><span class="p">(</span><span class="n">bits_prec</span> <span class="o">=</span> <span class="mi">120</span><span class="p">)</span> 
+<span class="go">[(-0.47120283346076781167174343474008914 + 2.3030710375877078211095122873223488*I, 2.6757599281290843845710310925394911), (-0.25618853688042434043044508297577899 + 1.2521580040549576537090841783446072*I, 1.4547854392045669515377748986943560), (0.13143677360753666862808198126761923 + 0.99169047854575721271560179767750893*I, 1.2236291171413362101960100623801910)]</span>
+</pre></div>
+</div>
+<p>and can return verified intervals</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sage: N.all_translations(verified = True) # doctest: +NUMERIC9
+[(-0.47120283346? + 2.30307103759?*I, 2.67575992813?), (-0.256188536881? + 1.252158004055?*I, 1.454785439205?), (0.131436773608? + 0.991690478546?*I, 1.2236291171413?)]
+sage: N.all_translations(verified = True, bits_prec = 120) # doctest: +NUMERIC30
+[(-0.4712028334607678116717434347401? + 2.3030710375877078211095122873224?*I, 2.6757599281290843845710310925395?), (-0.25618853688042434043044508297578? + 1.25215800405495765370908417834461?*I, 1.454785439204566951537774898694356?), (0.131436773607536668628081981267619? + 0.991690478545757212715601797677509?*I, 1.223629117141336210196010062380191?)]
+</pre></div>
+</div>
+<p>that are guaranteed to contain the true translations of disjoint cusp
+neighborhoods (the element corresponding to a longitude is always
+in a <code class="docutils literal notranslate"><span class="pre">RealIntervalField</span></code>). The verified translations might correspond
+to cusp neighborhoods smaller than the given ones to be able to verify
+that they are disjoint.</p>
+<p><strong>Remark:</strong> Since the code is (potentially) non-deterministic, the result of</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="n">N</span><span class="o">.</span><span class="n">all_translations</span><span class="p">(</span><span class="n">verified</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="o">.</span><span class="n">num_cusps</span><span class="p">())</span> <span class="p">]</span>
+</pre></div>
+</div>
+<p>is not verified to correspond to disjoint cusp neighborhoods.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.CuspNeighborhood.check_index">
+<code class="sig-name descname">check_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">which_cusp</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.CuspNeighborhood.check_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raises an IndexError if the cusp index is invalid.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.CuspNeighborhood.get_displacement">
+<code class="sig-name descname">get_displacement</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">which_cusp</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.CuspNeighborhood.get_displacement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the displacement of the horospherical boundary of the
+specified cusp. The displacement is the hyperbolic distance
+that the horospherical boundary has been displaced from its
+“home” position, at which the area of the boundary is
+3sqrt(3)/8.  (The translates of all of the horospheres are
+guaranteed to be pairwise disjoint when each cusp has
+displacement 0.)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.CuspNeighborhood.get_tie">
+<code class="sig-name descname">get_tie</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">which_cusp</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.CuspNeighborhood.get_tie" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the specified cusp is a member of the tied group. 
+The displacements of the tied cusps are all the same.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.CuspNeighborhood.horoballs">
+<code class="sig-name descname">horoballs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cutoff</span><span class="o">=</span><span class="default_value">0.1</span></em>, <em class="sig-param"><span class="n">which_cusp</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">full_list</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">high_precision</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.CuspNeighborhood.horoballs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of dictionaries describing the horoballs with
+height at least cutoff.  The keys are ‘center’, ‘radius’, ‘index’.</p>
+<p>If the high_precision flag is set to the default value False, these
+are Python complexes and floats.  Otherwise they are SnapPy Numbers.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.CuspNeighborhood.manifold">
+<code class="sig-name descname">manifold</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.CuspNeighborhood.manifold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a Manifold built from the current canonical triangulation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.CuspNeighborhood.max_reach">
+<code class="sig-name descname">max_reach</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.CuspNeighborhood.max_reach" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the maximum reach over all cusps.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.CuspNeighborhood.num_cusps">
+<code class="sig-name descname">num_cusps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snappy.CuspNeighborhood.num_cusps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of cusps.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.CuspNeighborhood.original_index">
+<code class="sig-name descname">original_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">which_cusp</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.CuspNeighborhood.original_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the index by which the Manifold identifies this cusp.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.CuspNeighborhood.reach">
+<code class="sig-name descname">reach</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">which_cusp</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.CuspNeighborhood.reach" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the displacement at which the specified cusp
+neighborhood bumps into itself.  (This is twice the
+distance between nearest horoball lifts.)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.CuspNeighborhood.set_displacement">
+<code class="sig-name descname">set_displacement</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_displacement</span></em>, <em class="sig-param"><span class="n">which_cusp</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.CuspNeighborhood.set_displacement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the displacement of the specified cusp.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.CuspNeighborhood.set_tie">
+<code class="sig-name descname">set_tie</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">which_cusp</span></em>, <em class="sig-param"><span class="n">new_tie</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.CuspNeighborhood.set_tie" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark the specified cusp as a member of the tied group.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.CuspNeighborhood.stopper">
+<code class="sig-name descname">stopper</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">which_cusp</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.CuspNeighborhood.stopper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the index of the cusp which will be the first one that
+the specified cusp neighborhood bumps into.
+(Assumes the other displacements are fixed.)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.CuspNeighborhood.stopping_displacement">
+<code class="sig-name descname">stopping_displacement</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">which_cusp</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.CuspNeighborhood.stopping_displacement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the displacement at which the specified cusp
+neighborhood bumps into itself or another cusp neighborhood.
+(Assumes the other displacements are fixed.)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.CuspNeighborhood.topology">
+<code class="sig-name descname">topology</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">which_cusp</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.CuspNeighborhood.topology" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the topological type of the specified cusp.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.CuspNeighborhood.translations">
+<code class="sig-name descname">translations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">which_cusp</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.CuspNeighborhood.translations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the (complex) Euclidean translations of the meridian
+and longitude of the specified cusp.</p>
+<p>Also see <a class="reference internal" href="#snappy.CuspNeighborhood.all_translations" title="snappy.CuspNeighborhood.all_translations"><code class="xref py py-meth docutils literal notranslate"><span class="pre">CuspNeighborhood.all_translations()</span></code></a> which supports
+arbitrary precision and verified results.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.CuspNeighborhood.triangulation">
+<code class="sig-name descname">triangulation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">which_cusp</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">high_precision</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.CuspNeighborhood.triangulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of dictionaries describing the endpoints of the
+segments obtained by projecting the edges of the triangulation
+dual to the Ford domain into the xy-plane in the upper half
+space model.  The keys are ‘endpoints’ and ‘indices’.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.CuspNeighborhood.use_field_conversion">
+<code class="sig-name descname">use_field_conversion</code><span class="sig-paren">(</span><em class="sig-param">type cls</em>, <em class="sig-param">func</em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.CuspNeighborhood.use_field_conversion" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="snappy.CuspNeighborhood.view">
+<code class="sig-name descname">view</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">which_cusp</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">cutoff</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.CuspNeighborhood.view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a 3D picture of the horoball packing.  One can specify
+which cusp to put at infinity and how large of horoballs to
+look at, e.g.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;m125&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">cusp_neighborhood</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">which_cusp</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>   
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snappy.CuspNeighborhood.volume">
+<code class="sig-name descname">volume</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">which_cusp</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snappy.CuspNeighborhood.volume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the volume of the horoball neighborhood of the specified
+cusp.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Additional Classes</a><ul>
+<li><a class="reference internal" href="#abeliangroup">AbelianGroup</a></li>
+<li><a class="reference internal" href="#fundamentalgroup">FundamentalGroup</a></li>
+<li><a class="reference internal" href="#symmetrygroup">SymmetryGroup</a></li>
+<li><a class="reference internal" href="#dirichletdomain">DirichletDomain</a></li>
+<li><a class="reference internal" href="#cuspneighborhood">CuspNeighborhood</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="triangulation.html"
+                        title="previous chapter">Triangulation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="censuses.html"
+                        title="next chapter">Census manifolds</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/additional_classes.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="censuses.html" title="Census manifolds"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="triangulation.html" title="Triangulation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">SnapPy 2.8 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="snappy.html" >The snappy module and its classes</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2009-2020, by Marc Culler, Nathan Dunfield, Jeffrey Weeks and others.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.3.
+    </div>
+  </body>
+</html>

@@ -36,11 +36,21 @@ def hello(word):
     
     footprint = geojson_to_wkt(read_geojson('static/data.geojson'))
     data = 'done proceing'
-    products = api.query(footprint, date=('20200201', date(2020, 2, 1)), platformname='Sentinel-1')
+    products = api.query(footprint, date=('20200201', date(2020, 2, 1)), platformname='Sentinel-2')
+    #api.download_all(products)
+    products_df = api.to_dataframe(products)
+
+    # sort and limit to first 5 sorted products
+    products_df_sorted = products_df.sort_values(['cloudcoverpercentage', 'ingestiondate'], ascending=[True, True])
+    products_df_sorted = products_df_sorted.head(5)
+
+    # download sorted and reduced products
+    api.download_all(products_df_sorted.index)
+    print(products_df)
+    print(type(products_df))
     return render_template('base.html',data=data)
 
     # convert to Pandas DataFrame
-    products_df = api.to_dataframe(products)
     print (products_df)
 
 def ApplyOrbitFile(products):
